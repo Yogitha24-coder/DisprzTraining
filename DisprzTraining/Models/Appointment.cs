@@ -1,33 +1,17 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace DisprzTraining.Models
+﻿// Models/Appointment.cs
+public class Appointment
 {
-    public class Appointment
-    {
-        [Key]
-        public int Id { get; set; }
+    public int Id { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public DateTime Date { get; set; }
+    public TimeSpan StartTime { get; set; }
+    public TimeSpan EndTime { get; set; }
 
-        [Required, MaxLength(200)]
-        public string Title { get; set; }
+    public string? Color { get; set; }
+public string? Attendees { get; set; }
 
-        public string Description { get; set; }
 
-        [Required]
-        public DateTime Date { get; set; }
-
-        [Required]
-        public TimeSpan StartTime { get; set; }
-
-        [Required]
-        public TimeSpan EndTime { get; set; }
-
-        // ✅ FK → User
-        [Required]
-        public int UserId { get; set; }
-
-        [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
-    }
+    public int UserId { get; set; }
+    public DisprzTraining.Models.User? User { get; set; } = null;
 }

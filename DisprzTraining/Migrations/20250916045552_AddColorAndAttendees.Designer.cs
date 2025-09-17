@@ -4,6 +4,7 @@ using DisprzTraining.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DisprzTraining.Migrations
 {
     [DbContext(typeof(AppointmentsContext))]
-    partial class AppointmentsContextModelSnapshot : ModelSnapshot
+    [Migration("20250916045552_AddColorAndAttendees")]
+    partial class AddColorAndAttendees
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace DisprzTraining.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Appointment", b =>
+            modelBuilder.Entity("DisprzTraining.Models.Appointment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,6 +43,7 @@ namespace DisprzTraining.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<TimeSpan>("EndTime")
@@ -87,7 +91,7 @@ namespace DisprzTraining.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Appointment", b =>
+            modelBuilder.Entity("DisprzTraining.Models.Appointment", b =>
                 {
                     b.HasOne("DisprzTraining.Models.User", "User")
                         .WithMany()
